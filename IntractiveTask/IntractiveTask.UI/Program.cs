@@ -1,4 +1,4 @@
-using IntractiveTask.UI.Services;
+﻿using IntractiveTask.UI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,10 +9,7 @@ builder.Services.AddSession();
 
 builder.Services.AddControllersWithViews();
 
-
-
 var app = builder.Build();
-
 
 if (!app.Environment.IsDevelopment())
 {
@@ -25,10 +22,12 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseSession();  // <- BU SATIR EKLENMELİ
+
 app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Auth}/{action=Login}");
 
 app.Run();

@@ -1,6 +1,9 @@
-﻿@using IntractiveTask.UI.Models.Auth
+﻿
+@using IntractiveTask.UI.Models.Auth
 @model LoginRequest
-
+@{
+    Layout = null;
+}
 <form asp-action="Login" method="post">
     <input asp-for="Username" placeholder="Username" />
     <input asp-for="Password" type="password" placeholder="Password" />

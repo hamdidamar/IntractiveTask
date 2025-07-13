@@ -11,7 +11,7 @@ namespace IntractiveTask.Data.Seeders;
 
 public class UserSeeder
 {
-    public static void SeedUser(ModelBuilder modelBuilder)
+    public static void Seed(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<User>().HasData(
             new User

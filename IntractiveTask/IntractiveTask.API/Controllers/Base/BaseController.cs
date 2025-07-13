@@ -37,11 +37,11 @@ public class BaseController<TModel, TDto, TCreateDto, TUpdateDto, TDeleteDto> : 
         string cacheKey = typeof(TModel)
             + "-" + "[GetAll]";
 
-        var cachedData = await _cacheService.GetAsync<List<TDto>>(cacheKey);
-        if (cachedData != null)
-        {
-            return Ok(cachedData);
-        }
+        //var cachedData = await _cacheService.GetAsync<List<TDto>>(cacheKey);
+        //if (cachedData != null)
+        //{
+        //    return Ok(cachedData);
+        //}
 
         var result = await _manager.GetAllAsync();
         var dtoResult = _mapper.Map<List<TDto>>(result);

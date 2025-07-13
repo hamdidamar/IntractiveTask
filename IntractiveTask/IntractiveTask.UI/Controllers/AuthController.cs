@@ -13,10 +13,16 @@ public class AuthController : Controller
         _apiClient = apiClient;
     }
 
+    [HttpGet]
+    public async Task<IActionResult> Login()
+    {
+        return View();
+    }
+
     [HttpPost]
     public async Task<IActionResult> Login(LoginRequest model)
     {
-        var token = await _apiClient.PostAsync<LoginRequest, string>("/api/Auth/login", model);
+        var token = await _apiClient.PostForTokenAsync("/api/Auth/login", model);
         if (!string.IsNullOrEmpty(token))
         {
             HttpContext.Session.SetString("JwtToken", token);

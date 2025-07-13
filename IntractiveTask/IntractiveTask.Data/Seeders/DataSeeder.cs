@@ -11,7 +11,9 @@ public static class DataSeeder
 {
     public static void SeedMain(ModelBuilder modelBuilder)
     {
-        UserSeeder.SeedUser(modelBuilder);
+        UserSeeder.Seed(modelBuilder);
+        ProjectSeeder.Seed(modelBuilder);
+        ProjectTaskSeeder.Seed(modelBuilder);
     }
 
 }

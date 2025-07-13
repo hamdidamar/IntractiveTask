@@ -9,6 +9,11 @@ public class ApiClient
     private readonly IHttpClientFactory _httpClientFactory;
     private readonly IHttpContextAccessor _httpContextAccessor;
 
+    private static readonly JsonSerializerOptions _jsonOptions = new()
+    {
+        PropertyNameCaseInsensitive = true
+    };
+
     public ApiClient(IHttpClientFactory httpClientFactory, IHttpContextAccessor httpContextAccessor)
     {
         _httpClientFactory = httpClientFactory;
@@ -18,7 +23,7 @@ public class ApiClient
     private HttpClient CreateClient()
     {
         var client = _httpClientFactory.CreateClient();
-        client.BaseAddress = new Uri("https://localhost:7256"); // can changed beacuse of port
+        client.BaseAddress = new Uri("https://localhost:7256");
 
         var token = _httpContextAccessor.HttpContext?.Session.GetString("JwtToken");
         if (!string.IsNullOrWhiteSpace(token))
@@ -29,7 +34,6 @@ public class ApiClient
         return client;
     }
 
-    // GET
     public async Task<T?> GetAsync<T>(string url)
     {
         var client = CreateClient();
@@ -41,10 +45,9 @@ public class ApiClient
         }
 
         var content = await response.Content.ReadAsStringAsync();
-        return JsonSerializer.Deserialize<T>(content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+        return JsonSerializer.Deserialize<T>(content, _jsonOptions);
     }
 
-    // POST
     public async Task<TResponse?> PostAsync<TRequest, TResponse>(string url, TRequest data)
     {
         var client = CreateClient();
@@ -59,10 +62,9 @@ public class ApiClient
         }
 
         var responseBody = await response.Content.ReadAsStringAsync();
-        return JsonSerializer.Deserialize<TResponse>(responseBody, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+        return JsonSerializer.Deserialize<TResponse>(responseBody, _jsonOptions);
     }
 
-    // PUT
     public async Task<bool> PutAsync<TRequest>(string url, TRequest data)
     {
         var client = CreateClient();
@@ -73,11 +75,29 @@ public class ApiClient
         return response.IsSuccessStatusCode;
     }
 
-    // DELETE
     public async Task<bool> DeleteAsync(string url)
     {
         var client = CreateClient();
         var response = await client.DeleteAsync(url);
         return response.IsSuccessStatusCode;
     }
+
+    public async Task<string?> PostForTokenAsync<TRequest>(string url, TRequest data)
+    {
+        var client = CreateClient();
+        var json = JsonSerializer.Serialize(data);
+        var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+        var response = await client.PostAsync(url, content);
+
+        if (!response.IsSuccessStatusCode)
+            return null;
+
+        var responseBody = await response.Content.ReadAsStringAsync();
+
+        var tokenResponse = JsonSerializer.Deserialize<TokenResponse>(responseBody, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+
+        return tokenResponse?.token;
+    }
+
 }
