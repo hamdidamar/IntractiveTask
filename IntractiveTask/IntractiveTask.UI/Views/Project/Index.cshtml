@@ -20,10 +20,11 @@
                 <td>@project.Title</td>
                 <td>@project.Description</td>
                 <td>
+                    <a asp-controller="ProjectTask" asp-action="Index" asp-route-id="@project.Id" class="btn btn-info">Tasks</a>
                     <a asp-action="Edit" asp-route-id="@project.Id" class="btn btn-warning">Edit</a>
-                    <form asp-action="Delete" asp-route-id="@project.Id" method="post" style="display:inline;">
+                   @*  <form asp-action="Delete" asp-route-id="@project.Id" method="post" style="display:inline;">
                         <button type="submit" class="btn btn-danger">Delete</button>
-                    </form>
+                    </form> *@
                 </td>
             </tr>
         }

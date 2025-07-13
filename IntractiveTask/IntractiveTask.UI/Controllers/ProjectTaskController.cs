@@ -13,10 +13,9 @@ namespace IntractiveTask.UI.Controllers
             _apiClient = apiClient;
         }
 
-        public async Task<IActionResult> Index(int projectId)
+        public async Task<IActionResult> Index()
         {
-            var tasks = await _apiClient.GetAsync<List<ProjectTaskDto>>($"/api/ProjectTask/{projectId}");
-            ViewBag.ProjectId = projectId;
+            var tasks = await _apiClient.GetAsync<List<ProjectTaskDto>>($"/api/ProjectTask");
             return View(tasks);
         }
 
