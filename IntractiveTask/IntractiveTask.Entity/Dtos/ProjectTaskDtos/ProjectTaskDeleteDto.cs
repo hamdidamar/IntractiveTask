@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace IntractiveTask.Entity.Dtos.TaskDtos;
 
-public class TaskUpdateDto : BaseUpdateDto
+public class ProjectTaskDeleteDto : BaseDeleteDto
 {
     public int ProjectId { get; set; }
     public string Title { get; set; }

@@ -6,13 +6,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IntractiveTask.Entity.Dtos.ProjectDtos;
+namespace IntractiveTask.Entity.Dtos.TaskDtos;
 
-public class ProjectDeleteDto : BaseDeleteDto
+public class ProjectTaskUpdateDto : BaseUpdateDto
 {
+    public int ProjectId { get; set; }
     public string Title { get; set; }
     public string Description { get; set; }
     public DateTime StartDate { get; set; }
     public DateTime EndDate { get; set; }
-    public ProjectStatusEnum Status { get; set; }
+    public ProjectTaskStatusEnum Status { get; set; }
+    public ProjectTaskPriorityEnum Priority { get; set; }
 }

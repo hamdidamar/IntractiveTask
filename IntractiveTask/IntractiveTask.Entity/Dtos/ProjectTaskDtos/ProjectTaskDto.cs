@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace IntractiveTask.Entity.Dtos.TaskDtos;
 
-public class TaskDto : BaseDto
+public class ProjectTaskDto : BaseDto
 {
     public int ProjectId { get; set; }
     public string Title { get; set; }

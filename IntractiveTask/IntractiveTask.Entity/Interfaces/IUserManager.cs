@@ -10,4 +10,6 @@ namespace IntractiveTask.Entity.Interfaces;
 
 public interface IUserManager : IManager<User>
 {
+    string Authenticate(string username, string password);
+    bool VerifyPassword(string password, string storedHash);
 }

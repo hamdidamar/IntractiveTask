@@ -9,4 +9,7 @@ namespace IntractiveTask.Entity.Dtos.UserDtos;
 
 public class UserDeleteDto : BaseDeleteDto
 {
+    public string Username { get; set; }
+    public string PasswordHash { get; set; }
+    public int UserTypeId { get; set; }
 }

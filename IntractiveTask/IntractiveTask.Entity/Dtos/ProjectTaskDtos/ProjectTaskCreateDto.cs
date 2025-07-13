@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace IntractiveTask.Entity.Dtos.TaskDtos;
 
-public class TaskCreateDto : BaseCreateDto
+public class ProjectTaskCreateDto : BaseCreateDto
 {
     public int ProjectId { get; set; }
     public string Title { get; set; }
