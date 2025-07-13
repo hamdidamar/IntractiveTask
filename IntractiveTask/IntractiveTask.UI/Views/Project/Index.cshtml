@@ -1,0 +1,31 @@
+﻿@using IntractiveTask.Entity.Dtos.ProjectDtos
+@model List<ProjectDto>
+
+<h2>Projects</h2>
+
+<a asp-action="Create" class="btn btn-primary">New Project</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var project in Model)
+        {
+            <tr>
+                <td>@project.Title</td>
+                <td>@project.Description</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@project.Id" class="btn btn-warning">Edit</a>
+                    <form asp-action="Delete" asp-route-id="@project.Id" method="post" style="display:inline;">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -6,4 +6,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\IntractiveTask.Entity\IntractiveTask.Entity.csproj" />
+  </ItemGroup>
+
 </Project>

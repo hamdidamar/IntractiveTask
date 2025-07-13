@@ -1,0 +1,22 @@
+﻿@using IntractiveTask.Entity.Dtos.TaskDtos
+@model ProjectTaskCreateDto
+
+<h2>Create Task</h2>
+
+<form asp-action="Create" method="post">
+    <input type="hidden" asp-for="ProjectId" />
+    <div class="mb-3">
+        <label asp-for="Title" class="form-label"></label>
+        <input asp-for="Title" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="Description" class="form-label"></label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+    </div>
+    <div class="mb-3">
+        <label asp-for="EndDate" class="form-label"></label>
+        <input asp-for="EndDate" type="date" class="form-control" />
+    </div>
+  
+    <button type="submit" class="btn btn-success">Save</button>
+</form>

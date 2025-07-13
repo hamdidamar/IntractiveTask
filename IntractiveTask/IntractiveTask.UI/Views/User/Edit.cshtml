@@ -1,0 +1,17 @@
+﻿@using IntractiveTask.Entity.Dtos.UserDtos
+@model UserUpdateDto
+
+<h2>Edit User</h2>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+    <div class="mb-3">
+        <label asp-for="Username" class="form-label"></label>
+        <input asp-for="Username" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="PasswordHash" class="form-label"></label>
+        <input asp-for="PasswordHash" type="password" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-success">Update</button>
+</form>
